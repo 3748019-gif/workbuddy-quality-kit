@@ -1,72 +1,49 @@
-# 5.0 安装与使用
+# WorkBuddy Quality Kit 5.1 使用方法
 
-5.0是用户指定的后续开发基线，承接4.5离线候选r3。它已发布源码与安装材料，但完整内容验收仍未通过；详情见[验证记录](VERIFICATION.md)。4.4保留为历史稳定版。
+可安装的已知限制版，严格内容验收未全通过；具体限制与其他一般未解决项如下。
 
-## 选择下载包
+推荐把完整自配置包解压到独立目录，交给WorkBuddy读取手册与下方提示词；单份Word或TXT手册也能恢复33份文件。GUI小包只用于技能上传，不包含入口安装与完整自检；源码仓库不能直接当GUI技能ZIP上传。
 
-- [GUI技能包](https://github.com/3748019-gif/workbuddy-quality-kit/releases/download/v5.0/workbuddy-quality-kit-v5.0.zip)：只有一个技能目录，14份核心文件加MIT许可证，共15份。仅用于WorkBuddy技能上传入口，不包含自动入口安装或完整自配置材料。
-- [完整自配置包](https://github.com/3748019-gif/workbuddy-quality-kit/releases/download/v5.0/workbuddy-quality-kit-setup-v5.0.zip)：含安装器、自检、虚构材料、可独立还原源码的Word/TXT手册及安装提示词。推荐交给WorkBuddy读取。
-- [源码包](https://github.com/3748019-gif/workbuddy-quality-kit/releases/download/v5.0/workbuddy-quality-kit-source-v5.0.zip)：用于维护、审查或从源码准备安装目录。仓库根目录只有一个SKILL.md，不将整个源码仓库当GUI技能包上传。
+已有同名技能或人工定制内容会保留并报告冲突。此包只新增缺失内容，没有自动覆盖升级功能。安装提问含必要原生确认最多5个，不强制更换模型，不读取或写入个人记忆。
 
-安装默认保留所有原配置。已存在同名4.4或定制版时，安装器会拒绝覆盖；这是正常保护，不是已经升级成功。若要评估5.0，请用明确的隔离测试环境。升级迁移覆盖旧文件不在本次包的自动操作范围内。
+## 可复制安装提示词
 
-## 安装提示词
+请读取这份 WorkBuddy Quality Kit 5.1 自配置包并按说明完成配置。这是用户接受已知限制后的可安装版本，严格内容验收尚未全通过。请先读随包限制说明，再按保留原配置的规则安装。
 
-```text
-请读取这份 WorkBuddy Quality Kit 5.0 开发基线的说明并完成自配置。我了解它保留已知的文字说明一致性问题，发布不等于完整内容验收通过。
+先核实本机 WorkBuddy 版本、实际技能和设置路径，以及正常可用的 Python 3.9 以上解释器。保留原指令、人设、模型、权限、其他技能、连接器、已有Hook及启停状态；不读取或写入个人记忆，不关闭安全保护。
 
-先在本次独立工作目录准备材料并自检。保留我的原全局指令、人设、默认模型、个人记忆、权限、安全保护、代理、登录、连接器、其他技能、已有Hook及启停状态，不读取或写入个人记忆。核实本机 WorkBuddy 版本、实际技能目录、设置格式，以及正常可用的 Python 3.9 以上解释器，不猜路径。
+完整包直接使用安装文件；源码包先运行 tools/prepare_setup.py --output 指向仓库外的新目录；只有Word或TXT手册时按附录恢复33份文件并核对SHA。实际运行全部随包自检，确认selftest.py：71/71、selftest_offline.py：93/93、selftest_gate.py：89/89、selftest_review.py：48/48且各退出码为0。失败则保留现场，不能修改期望凑通过。
 
-若提供的是源码仓库，运行 tools/prepare_setup.py --output 指向仓库外一个尚不存在的新目录；若提供完整自配置包，使用包内安装文件；若只有Word或TXT手册，先按附录还原29份文件并逐项核对字节数和SHA-256。实际执行 selftest.py 和 selftest_offline.py，分别确认71/71、41/41及退出码0。失败时保留现场和错误，不改期望、不关闭保护、不换不明解释器来凑通过。
+按 install_skill.py 的 plan/apply/verify 处理这一个技能：目标不存在才新增，完全一致则复用；同名旧版、定制内容或人工改动均保留并报告冲突，不覆盖、不删除、不另造重复技能，也不把冲突当升级成功。
 
-按 install_skill.py 的 plan/apply/verify 处理这一个技能。目标不存在时才新增；内容完全一致时复用；发现同名4.4、定制版、较新版本、产品附加元数据或人工修改时保留并报告冲突，不覆盖、不删除、不改名制造第二份同名技能。出现冲突可以完成隔离测试，不得宣称升级成功。
+技能安装成功且设置兼容时，可按 install_entry.py 的 plan/apply/verify 追加本包缺失入口，保留原Hook及顺序。若不能兼容，保留设置并说明显式调用方式。
 
-如实际安装已成功且设置兼容，我同意按 install_entry.py 的 plan/apply/verify 只追加本包缺失的 SessionStart 和 PreToolUse 入口，保留原Hook顺序和所有无关字段。入口不可兼容时保留原设置，提供显式调用方法，并如实说明未完成。
+项目交付回执检查是单独的可选功能，只在我明确选择的工作区启用，不能默认扫描或修改所有项目。按手册运行 content_gate.py initialize，核对它输出的项目路径和Hook片段，再只向该项目设置追加缺失项，保留已有字段、Hook顺序、启停状态及权限。它不会自动安装项目Hook，也不授权放宽安全设置。产品若请求信任这个包含脚本的项目，正常完成必要确认；无授权、格式不兼容或确认额度不足时保留原设置，报告该功能未启用。
 
-所有新收据、备份和日志只放本次独立目录。沿用我指定的可用模型，不改变全局默认模型；本轮研发使用DeepSeek V4.1 Flash并不要求他人更换模型。安装提问连同必要原生确认合计不超过5个；必要授权不能省略，超过上限则保留已完成部分并报告剩余事项。
+不同系统的项目Hook命令解释方式可能不同，按随包支持范围处理；未支持的系统只使用基础技能，不猜命令转义、不把未测试的平台说成已支持。
 
-安装后分别核实文件安装、产品发现及启用、新任务实际读取技能与适用参考、一个虚构短任务的结果正确与原件保留。特别核对最终说明里的数量、全部/部分、空值和范围是否与原资料及成品一致，不能把程序自检通过当作内容已通过。
+所有收据、备份和日志留在本次独立目录；问题连同必要原生确认合计不超过5个，超过上限就报告剩余事项，不绕过授权。
 
-最后报告真实变更、原配置保留、两个自检、新任务结果、同名冲突、未验证范围，以及本机私有收据位置和有限回退命令。共享时不带收据、日志、账号或真实任务资料。
-```
+最后用一个新的虚构短任务确认产品发现、实际读取技能、结果与原件保护，并核对最终说明中的数字、范围、例外和原因。报告真实变更、自检、冲突、未验证范围及有限回退方式。分享时不带账号、真实资料、记忆或本机收据。
 
-## 源码准备与自检
+本包采用先来源、后成品的两阶段复核：核实第一阶段没有提前读取作者成品，第二阶段确实resume同一Agent并对照当前版本。正确稿保持原样，默认不提润色建议。两阶段调用和版本记录完整也不能代替内容验收。
 
-在源码仓库目录，用本机已核实的解释器执行：
+本轮还需核实原要求的全部必交件已用prepare --required-artifact声明、compare自动全量请求且真实Agent实际读取完整集合，再用review_request.py handoff从同一记录派生交付。普通文件默认中性回执，明确聊天必答才在compare绑定--reply-file。使用返回的mode=default参数，不另挑artifact或手填SHA绕过记录。声明与版本检查不证明完整要求已满足或语义正确。
 
-```shell
-python3 tools/prepare_setup.py --output ../quality-kit-setup-v5
-python3 ../quality-kit-setup-v5/selftest.py
-python3 ../quality-kit-setup-v5/selftest_offline.py
-```
+已知限制与本次交付依据
+本版可按原配置保护规则安装使用；严格内容验收尚未全通过。以下是本轮开发的交付决定，不是对其他使用者未来任务的自动豁免。
+用户范围依据：
+- 本轮要求停止围绕合理推测被写成确定事实继续返工；若当前重测仍漏审后交付，也记录局限并停止该步优化。历史失败和原严格验收标准不改写。
+用户接受并停止继续优化的限制：
+- 模型对样例适用范围或回复渠道仍可能作没有直接记录支持的推定，本版保留该局限。当前最终重测未再出现漏审必交文件后交付。
+未归入上述豁免的一般未解决项：
+- 一项报告附加说明将7条数据记录写成含表头的8行，核心业务计算和要求结论正确；这是直接计数口径问题，未归入上述推测豁免，也尚未修正。
+本次交付决定要求关键业务错误无遗留、原件保护已验证；这不等于所有文字和所有任务均无错误。未授权自动发布GitHub或修改已安装配置。
 
-输出目录的父目录必须存在，输出目录须尚不存在且位于仓库外。准备工具校验SHA并生成29份安装文件，只准备材料、不写全局设置。工具只使用Python标准库。单份Word/TXT手册恢复方式在手册正文中。
+## 日常调用
 
-## 计划、安装与回退
+先实际读取 workbuddy-quality-kit 及本次适用参考，再完成任务。输出后核对原要求、关键结论与实际成品。简单问答和单处改字保持轻量。
 
-进入准备后的目录执行；下面大写占位符必须替换成已核实的路径：
+## 共享
 
-```shell
-python3 install_skill.py plan --root SKILL_ROOT
-python3 install_skill.py apply --root SKILL_ROOT --receipt NEW_RECEIPT
-python3 install_skill.py verify --root SKILL_ROOT
-```
-
-只有选择本包入口、确认设置兼容且技能安装成功时，才执行：
-
-```shell
-python3 install_entry.py plan --settings SETTINGS --skill-root INSTALLED_SKILL
-python3 install_entry.py apply --settings SETTINGS --skill-root INSTALLED_SKILL --receipt NEW_ENTRY_RECEIPT
-python3 install_entry.py verify --settings SETTINGS --skill-root INSTALLED_SKILL
-```
-
-安装器可用`--python`指定已核实的正常解释器。入口验证只证明所查规则读取条件，不证明业务内容正确。原入口实现来自4.4，其内部提示保留历史组件版本文字；5.0新增能力通过主技能及按需参考读取。
-
-回退使用本次私有收据，先入口后技能：
-
-```shell
-python3 install_entry.py rollback --settings SETTINGS --receipt NEW_ENTRY_RECEIPT
-python3 install_skill.py rollback --root SKILL_ROOT --receipt NEW_RECEIPT
-```
-
-仅处理本包拥有且未被后来修改的新增内容。人工改动、无法核实归属或同名冲突均保留；不会用整份旧设置覆盖当前设置。技能回退采用可恢复归档。
+只分享干净ZIP或手册，不分享本机收据、备份、账号、真实工作资料和运行日志。每台电脑安装后仍需核验产品发现与实际调用。
