@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "skill": "workbuddy-quality-kit",
+  "version": "4.4",
+  "files": {
+    "SKILL.md": "a5c87a7a1d22c949132afd9fba82eb02d12b51fa74d59f1c6337ecfb68246c21",
+    "references/complex-task.md": "3e0569699dcd6989808c4a5fb5aaeb35ca240f94cae4ee4aab25e860e2799d97",
+    "references/execution-review.md": "121b28de03b06bec4b1b779365858f5291bd134a6e3a385b84f19cb71876930b",
+    "references/guard-usage.md": "eb1ef9f168bd560e177d8a133cc6514bf06e4331610872e0bcef95b82c4d99d3",
+    "references/presentations.md": "9337754a9125d69e389d052678d59275b3267e84608dc127f3c33b757b68358d",
+    "scripts/entry_gate.py": "a38ac96ff0fc26af925e18a911c26c4cf507ff25685c7e69c504ac09a3cb847b",
+    "scripts/entry_hook.py": "41c23e6c5cb5bd5af5029d1028af1afc16236e5272ce3b82d92e502b803843db",
+    "scripts/office_guard.py": "15c9d770ec3620217650ad89469edf6060efab6bce655363365e750b8d933881",
+    "scripts/ppt_guard.py": "5ae0046f40329c060283e97c9adc14aef02e7c0234814fc38cdb443c43d1162e",
+    "scripts/run_guard.py": "2cf6e6397df66f30794e3404c9810e8d9bf683773c48a57dd6251cab234c1ae7",
+    "scripts/task_guard.py": "84c7f335ccbdec0674450e7584a3d92527aabb73368fb4ac3f6ee271cd60ff4c",
+    "LICENSE": "8103a82b0a00e898ac76dc2a82aba56dbdd171e39c2fe6e77c99a058ab474d4f"
+  },
+  "core_file_count": 11,
+  "auxiliary_files": [
+    "LICENSE"
+  ]
+}
