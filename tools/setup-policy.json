@@ -1,5 +1,5 @@
 {
-  "version": "4.4",
+  "version": "5.0",
   "mode": "preserve-existing-add-missing",
   "skill": "workbuddy-quality-kit",
   "overwrite_existing_files": false,
@@ -18,5 +18,9 @@
   "workflow_entry": "verify completed reads of current skill main and execution reference before implementation; fail open for unknown product formats",
   "entry_receipt_required": true,
   "entry_privacy": "current local transcript transiently read; no transcript/prompt/memory copies stored",
-  "native_permissions_unchanged": true
+  "native_permissions_unchanged": true,
+  "release_status": "development-baseline",
+  "online_search_changes_included": false,
+  "publication_authorized": true,
+  "content_acceptance_passed": false
 }

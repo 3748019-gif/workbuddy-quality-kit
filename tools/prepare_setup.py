@@ -1,4 +1,4 @@
-"""Prepare the unchanged 4.4 installer in a new, explicitly selected directory.
+"""Prepare the 5.0 development baseline in a new, explicitly selected directory.
 
 Python 3.9+, standard library only. Does not install or change WorkBuddy settings.
 The source repository remains unchanged. Existing output paths are refused.
@@ -36,7 +36,7 @@ def source_path(name):
 def prepare(output):
     no_symlinks(ROOT)
     manifest = json.loads(source_path("release-manifest.json").read_text(encoding="utf-8"))
-    if manifest.get("version") != "4.4" or not isinstance(manifest.get("files"), dict):
+    if manifest.get("version") != "5.0" or not isinstance(manifest.get("files"), dict):
         raise ValueError("Invalid release manifest")
     verified = {}
     for name, expected in manifest["files"].items():
@@ -47,13 +47,13 @@ def prepare(output):
     if "bundle-manifest.json" not in verified:
         raise ValueError("Missing core manifest")
     core = json.loads(verified["bundle-manifest.json"])
-    if (core.get("skill") != NAME or core.get("version") != "4.4"
-            or len(core.get("files", {})) != 12 or "LICENSE" not in core["files"]):
-        raise ValueError("Expected the 11 original 4.4 core files and MIT LICENSE")
+    if (core.get("skill") != NAME or core.get("version") != "5.0"
+            or len(core.get("files", {})) != 15 or "LICENSE" not in core["files"]):
+        raise ValueError("Expected the 14 core files and MIT LICENSE for 5.0")
 
     mapping = {"bundle-manifest.json": "bundle-manifest.json",
                "tools/setup-policy.json": "配置策略.json"}
-    for name in ("install_skill.py", "install_entry.py", "selftest.py"):
+    for name in ("install_skill.py", "install_entry.py", "selftest.py", "selftest_offline.py"):
         mapping["tools/" + name] = name
     for name, digest in core["files"].items():
         if name not in verified or hashlib.sha256(verified[name]).hexdigest() != digest:
@@ -83,9 +83,9 @@ def prepare(output):
             stream.write(verified[name])
         if path.read_bytes() != verified[name]:
             raise ValueError("Written payload verification failed: " + destination)
-    return {"ok": True, "version": "4.4", "setup_directory": str(target),
+    return {"ok": True, "version": "5.0", "setup_directory": str(target),
             "files": len(mapping), "installed": False,
-            "next": "Run selftest.py in the prepared directory; inspect plan before any actual installation."}
+            "next": "Run selftest.py and selftest_offline.py in the prepared directory; inspect plan before any actual installation."}
 
 
 def main():
