@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "purpose": "仅用于验收后对照，不可硬编码进生成程序；输入变化后旧答案失效。",
+  "inputs": {
+    "records.csv": "5fa30f9ca02f4981ff6b6c5e14e1e834e89218058991f0836b0960726a896c78",
+    "roster.csv": "23dfd7dd4091b49536ea6ee04cd753e1d2594b371d59fe5627397d1606ceaebf",
+    "规则v1.txt": "ba7954ac419239410398e04249cb5a8704daf2759f75ab0134758f68de961d61",
+    "通知-修订甲.txt": "e1c237b259095f85dd8a47551bc308005520f93e825b0e91c96a9781bb1c7595",
+    "通知-修订乙.txt": "b737fd0f96c3db77710a180199076e364644ba664561c55a70364e9b6fbc6e1d"
+  },
+  "expected": {
+    "included": [
+      {
+        "id": "0201",
+        "batch": "A",
+        "group": "甲",
+        "value": "1.25",
+        "source_rows": [
+          2,
+          3
+        ]
+      },
+      {
+        "id": "0203",
+        "batch": "A",
+        "group": "乙",
+        "value": "-0.40",
+        "source_rows": [
+          5
+        ]
+      },
+      {
+        "id": "0205",
+        "batch": "B",
+        "group": "乙",
+        "value": "0.93",
+        "source_rows": [
+          7
+        ]
+      }
+    ],
+    "pending": [
+      {
+        "id": "0202",
+        "batch": "A",
+        "reason": "roster_conflict",
+        "source_rows": [
+          4
+        ]
+      },
+      {
+        "id": "0204",
+        "batch": "B",
+        "reason": "policy_conflict",
+        "source_rows": [
+          6
+        ]
+      }
+    ],
+    "excluded": [
+      {
+        "id": "0206",
+        "batch": "B",
+        "reason": "missing",
+        "source_rows": [
+          8
+        ]
+      },
+      {
+        "id": "0207",
+        "batch": "B",
+        "reason": "conflict",
+        "source_rows": [
+          9,
+          10
+        ]
+      },
+      {
+        "id": "0208",
+        "batch": "B",
+        "reason": "cancelled",
+        "source_rows": [
+          11
+        ]
+      },
+      {
+        "id": "0209",
+        "batch": "B",
+        "reason": "unmatched",
+        "source_rows": [
+          12
+        ]
+      }
+    ],
+    "duplicate_rows": [
+      3
+    ],
+    "totals": {
+      "A": "0.85",
+      "B": "0.93",
+      "all": "1.78"
+    }
+  },
+  "resume": {
+    "change": "0205 value 0.93 to 0.90 in a copy, after saving checkpoint",
+    "expected_totals": {
+      "A": "0.85",
+      "B": "0.90",
+      "all": "1.75"
+    }
+  }
+}
