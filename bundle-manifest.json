@@ -1,23 +1,28 @@
 {
   "schema": 1,
   "skill": "workbuddy-quality-kit",
-  "version": "5.0",
-  "release_status": "development-baseline",
+  "version": "5.1",
+  "release_status": "accepted-limits",
   "files": {
     "LICENSE": "8103a82b0a00e898ac76dc2a82aba56dbdd171e39c2fe6e77c99a058ab474d4f",
-    "SKILL.md": "462436c0af903be7e0f78d67718c559e9811589d6b68fb8f35a86b1cb0b5ed42",
+    "SKILL.md": "211d9a04bdeb65f04185074b78da406083c3788d6a140d40b6b82f0df8f71179",
     "references/complex-task.md": "3e0569699dcd6989808c4a5fb5aaeb35ca240f94cae4ee4aab25e860e2799d97",
     "references/execution-review.md": "121b28de03b06bec4b1b779365858f5291bd134a6e3a385b84f19cb71876930b",
-    "references/guard-usage.md": "eb1ef9f168bd560e177d8a133cc6514bf06e4331610872e0bcef95b82c4d99d3",
-    "references/local-review.md": "5da7d8dc7300271f3d211a87f451ab231990c4fa78c122536c9a541e6f16bc27",
+    "references/guard-usage.md": "63de0bb2ade0fdb5395d48fd4daf92d85ab87a4ac5ae3f16c48d329ebe869f48",
+    "references/local-review.md": "efbaaf58c1c66ccd777a98d8d9802a52942ba236519c67ee12c6558bbcecd743",
     "references/presentations.md": "9337754a9125d69e389d052678d59275b3267e84608dc127f3c33b757b68358d",
-    "scripts/content_check.py": "5a364fc3ffd3b9c386298505d02a3c9a084a02d5801870029dcccb865eebe8c7",
+    "scripts/content_check.py": "7529d64d724d0fe177ab524887d9f5790f1fabea973ff1c073c47f94014d135d",
+    "scripts/content_gate.py": "7c8d24529d679f880cba459b9d64bbfdb858be9cfc8b477f7f1645b98ff028d6",
     "scripts/entry_gate.py": "a38ac96ff0fc26af925e18a911c26c4cf507ff25685c7e69c504ac09a3cb847b",
     "scripts/entry_hook.py": "41c23e6c5cb5bd5af5029d1028af1afc16236e5272ce3b82d92e502b803843db",
     "scripts/material_reader.py": "b9240308f0b4c7326bbda17baaad0b775eb2cd8abbd101958813946167a085b8",
     "scripts/office_guard.py": "15c9d770ec3620217650ad89469edf6060efab6bce655363365e750b8d933881",
     "scripts/ppt_guard.py": "5ae0046f40329c060283e97c9adc14aef02e7c0234814fc38cdb443c43d1162e",
+    "scripts/review_request.py": "48358865eb36c6112ee2440f2147870d7a63b5cce5d825e5d26590c827b552b1",
     "scripts/run_guard.py": "2cf6e6397df66f30794e3404c9810e8d9bf683773c48a57dd6251cab234c1ae7",
     "scripts/task_guard.py": "84c7f335ccbdec0674450e7584a3d92527aabb73368fb4ac3f6ee271cd60ff4c"
-  }
+  },
+  "content_acceptance_passed": false,
+  "user_accepted_limitations": true,
+  "publication_authorized": false
 }
