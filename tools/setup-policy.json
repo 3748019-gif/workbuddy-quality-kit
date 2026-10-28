@@ -1,0 +1,22 @@
+{
+  "version": "4.4",
+  "mode": "preserve-existing-add-missing",
+  "skill": "workbuddy-quality-kit",
+  "overwrite_existing_files": false,
+  "replace_global_instructions": false,
+  "replace_persona": false,
+  "copy_memory": false,
+  "change_existing_model_default": false,
+  "change_economy_or_agent_team": false,
+  "modify_permissions_proxy_login": false,
+  "conflict": "preserve-and-report",
+  "repeat": "reuse-if-exact",
+  "rollback": "only-owned-unchanged-addition; archive instead of delete",
+  "settings_append": "only owned SessionStart and PreToolUse hooks; preserve all existing entries and unrelated fields",
+  "not_native_settings_schema": true,
+  "max_user_questions_total": 5,
+  "workflow_entry": "verify completed reads of current skill main and execution reference before implementation; fail open for unknown product formats",
+  "entry_receipt_required": true,
+  "entry_privacy": "current local transcript transiently read; no transcript/prompt/memory copies stored",
+  "native_permissions_unchanged": true
+}
