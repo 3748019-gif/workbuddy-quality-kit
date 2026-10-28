@@ -1,5 +1,5 @@
 {
-  "version": "5.0",
+  "version": "5.1",
   "mode": "preserve-existing-add-missing",
   "skill": "workbuddy-quality-kit",
   "overwrite_existing_files": false,
@@ -19,8 +19,23 @@
   "entry_receipt_required": true,
   "entry_privacy": "current local transcript transiently read; no transcript/prompt/memory copies stored",
   "native_permissions_unchanged": true,
-  "release_status": "development-baseline",
+  "release_status": "accepted-limits",
   "online_search_changes_included": false,
-  "publication_authorized": true,
-  "content_acceptance_passed": false
+  "publication_authorized": false,
+  "content_acceptance_passed": false,
+  "user_accepted_limitations": true,
+  "limited_delivery": {
+    "approved": true,
+    "user_scope_basis": [
+      "本轮要求停止围绕合理推测被写成确定事实继续返工；若当前重测仍漏审后交付，也记录局限并停止该步优化。历史失败和原严格验收标准不改写。"
+    ],
+    "accepted_limitations": [
+      "模型对样例适用范围或回复渠道仍可能作没有直接记录支持的推定，本版保留该局限。当前最终重测未再出现漏审必交文件后交付。"
+    ],
+    "unresolved_general_issues": [
+      "一项报告附加说明将7条数据记录写成含表头的8行，核心业务计算和要求结论正确；这是直接计数口径问题，未归入上述推测豁免，也尚未修正。"
+    ],
+    "remaining_critical_business_errors": 0,
+    "original_preservation_verified": true
+  }
 }
