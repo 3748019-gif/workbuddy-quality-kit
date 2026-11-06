@@ -1,4 +1,4 @@
-"""Prepare the 5.1 development baseline in a new, explicitly selected directory.
+"""Prepare the 5.2 local release in a new, explicitly selected directory.
 
 Python 3.9+, standard library only. Does not install or change WorkBuddy settings.
 The source repository remains unchanged. Existing output paths are refused.
@@ -36,7 +36,7 @@ def source_path(name):
 def prepare(output):
     no_symlinks(ROOT)
     manifest = json.loads(source_path("release-manifest.json").read_text(encoding="utf-8"))
-    if manifest.get("version") != "5.1" or not isinstance(manifest.get("files"), dict):
+    if manifest.get("version") != "5.2" or not isinstance(manifest.get("files"), dict):
         raise ValueError("Invalid release manifest")
     verified = {}
     for name, expected in manifest["files"].items():
@@ -47,9 +47,9 @@ def prepare(output):
     if "bundle-manifest.json" not in verified:
         raise ValueError("Missing core manifest")
     core = json.loads(verified["bundle-manifest.json"])
-    if (core.get("skill") != NAME or core.get("version") != "5.1"
+    if (core.get("skill") != NAME or core.get("version") != "5.2"
             or len(core.get("files", {})) != 17 or "LICENSE" not in core["files"]):
-        raise ValueError("Expected the 17 candidate core files, including MIT LICENSE")
+        raise ValueError("Expected the 17 core files, including MIT LICENSE")
 
     mapping = {"bundle-manifest.json": "bundle-manifest.json",
                "tools/setup-policy.json": "配置策略.json"}
@@ -83,7 +83,7 @@ def prepare(output):
             stream.write(verified[name])
         if path.read_bytes() != verified[name]:
             raise ValueError("Written payload verification failed: " + destination)
-    return {"ok": True, "version": "5.1", "setup_directory": str(target),
+    return {"ok": True, "version": "5.2", "setup_directory": str(target),
             "files": len(mapping), "installed": False,
             "next": "Run selftest.py, selftest_offline.py, selftest_gate.py and selftest_review.py in the prepared directory; inspect plan before any actual installation."}
 
